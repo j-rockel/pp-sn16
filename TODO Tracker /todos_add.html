@@ -4,8 +4,13 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Add TODO </title>
+    <title>Add TO DO </title>
 
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
     <!-- Bootstrap -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <style>
@@ -13,7 +18,17 @@
     </style>
   </head>
   <body>
-    <h1>Hello, world!</h1>
+    <div class="container">
+      <h1>Add a To Do</h1>
 
+      <div class="form-group">
+        <label>To Do:</label>
+        <input type="text" class="form-control">
+        <label>Deadline:</label>
+        <input type="text" class="form-control">      
+      </div>
+      <a href="todos_overview.html" class="btn btn-success" role="button">Done</a>
+
+    </div>
   </body>
 </html>
