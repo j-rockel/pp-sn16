@@ -7,22 +7,8 @@
             <div class="container">
 
 				<form method="POST" class="text-center">{% csrf_token %}
-                    {{ form.non_field_errors }}
-  					<div class="col-xs-6">
-                        {{ form.content.errors }}
-                        <label for="{{ form.content.id_for_label }}">Task:</label>
-                        {{ form.content }}
-  					</div>
-  					<div class="col-xs-3">
- 						{{ form.deadline.errors }}
-                        <label for="{{ form.deadline.id_for_label }}">Date:</label>
-                        {{ form.deadline }}
-  					</div>
-  					<div class="col-xs-3">
- 						 {{ form.progress.errors }}
-                        <label for="{{ form.progress.id_for_label }}">Progress:</label>
-                        {{ form.progress }}
-  					</div>
+                    {{ form.as_p }}
+
                     <div class="col-xs-12" style="height:50px;"></div>
 
                     <div class="row">
