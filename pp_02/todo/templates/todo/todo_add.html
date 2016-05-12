@@ -1,58 +1,37 @@
-<!DOCTYPE html>
-<html lang="en">
-	<head>
-		<!-- Latest compiled and minified CSS -->
-		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+{% extends 'todo/base.html' %}
 
-		<!-- Optional theme -->
-		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
-
-		<meta charset="UTF-8">
-		<title>Create a to do</title>
-	</head>
-	<body style="background-color:rgb(235,240,246)">
-		<div class="container">
-			<!-- logo and title -->
-			<div class="row">
-	                	 <div class="col-md-4">
-	                        	<a href="todo_list">
-	                     			<img src="ToDo_logo.png" height="75" width="75">
-	                        	</a>
-	               	 	</div>
-	                	<div class="col-md-4">
-                         		<h1 class="text-center"><b>Create your Todo</b></h1>
-                         	</div>
-                	</div>
-			<hr style="width: 100%; color: black; height: 1px; background-color:black;" />
+{% block content %}
 			<p class="text-center"><b>To create your Todo just fill in the task, due date and progress.</b><br><br></p>
 			<!-- input -->
-			<div class="container">
-				<form class="text-center">
+
+            <div class="container">
+
+				<form method="POST" class="text-center">{% csrf_token %}
+                    {{ form.non_field_errors }}
   					<div class="col-xs-6">
- 						<label for="ToDo">Task</label>
-    						<input type="text" class="form-control" id="ToDo" placeholder="Task">
+                        {{ form.content.errors }}
+                        <label for="{{ form.content.id_for_label }}">Task:</label>
+                        {{ form.content }}
   					</div>
   					<div class="col-xs-3">
- 						<label for="date">Date</label>
-    						<input type="text" class="form-control" id="date" placeholder="Date">
+ 						{{ form.deadline.errors }}
+                        <label for="{{ form.deadline.id_for_label }}">Date:</label>
+                        {{ form.deadline }}
   					</div>
   					<div class="col-xs-3">
- 						<label for="progress">Progress</label>
-    						<input type="text" class="form-control" id="progress" placeholder="Progress">
+ 						 {{ form.progress.errors }}
+                        <label for="{{ form.progress.id_for_label }}">Progress:</label>
+                        {{ form.progress }}
   					</div>
+                    <div class="col-xs-12" style="height:50px;"></div>
+
+                    <div class="row">
+                        <button type="submit" class="btn btn-primary btn">Save</button>
+                        <p class="text-center" style="height:25px">
+                            <a href="{% url 'todo_impr' %}"><br>Impressum</a>
+                        </p>
+                    </div>
+
   				</form>
-  				<!-- navigational items -->
-  				<div class="col-xs-12" style="height:50px;"></div>
-					<div class="row">
-						<form action="todo_list" class="text-center">
-                  					<button type="submit" class="btn btn-primary btn">create Todo</button>
-              	 				</form>
-               					<p class="text-center" style="height:25px">
-               						<a href="todo_impr"><br>Impressum</a>
-               					</p>
-               				</div>
-           			</div>
-           		</div>
-		</div>
-	</body>
-</html>
+			</div>
+{% endblock %}

@@ -1,58 +1,33 @@
-<!DOCTYPE html>
+{% extends 'todo/base.html' %}
 
-<html lang="en">
-	<head>
-		<!-- Latest compiled and minified CSS -->
-		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
-
-		<!-- Optional theme -->
-		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
-
-		<meta charset="UTF-8">
-		<title>To Do's</title>
-	</head>
-	<body style="background-color:rgb(235,240,246)">
-	    <!-- logo and title-->
-	    <div class="container">
-	        <div class="row">
-	                 <div class="col-md-4">
-	                        <a href="todo_list">
-	                            <img src="ToDo_logo.png" height="75" width="75">
-	                        </a>
-	                </div>
-	                <div class="col-md-4">
-                            <h1 class="text-center"><b>Welcome to Todo</b></h1>
-                         </div>
-                </div>
-                <hr style="width: 100%; color: black; height: 1px; background-color:black;" /><hr>
+{% block content %}
 		<!-- to do table -->
 		<div class="responsive-table">          
   			<table class="table">
    				 <thead>
-    					<tr>
-     						<th>to do</th>
-        					<th>due till</th>
-        					<th>done</th>
-      					</tr>
-    				</thead>
-						{% for todo in todos %}
-      					<tr>
-        					<td>{{ todo.content }}</td>
-        					<td>{{ todo.deadline }}</td>
-        					<td>{{ todo.progress }} % </td>
-        					<td><form action="todo_edit"><button type="submit" class="btn btn-info btn-xs">modify</button></form></dt>
-        					<td><button type="button" class="btn btn-danger btn-xs">delete</button></td>
-          				</tr>
-						{% endfor %}
+                    <tr>
+                        <th>to do</th>
+                        <th>due till</th>
+                        <th>done</th>
+                    </tr>
+                 </thead>
+                {% for todo in todos %}
+                    <tr>
+                        <td>{{ todo.content }}</td>
+                        <td>{{ todo.deadline }}</td>
+                        <td>{{ todo.progress }} % </td>
+                        <td><form action="{% url 'todo_edit' pk=todo.pk %}"><button type="submit" class="btn btn-info btn-xs">modify</button></form></dt>
+                        <td><form action="{% url 'todo_del' pk=todo.pk %}"><button type="submit" class="btn btn-danger btn-xs">delete</button></form></td>
+                    </tr>
+                {% endfor %}
   			</table>
   			<!-- navigational items -->
-    			<form action="todo_add" class="text-center">
-                            <button type="submit" class="btn btn-primary ">create Todo</button>
-                        </form>
+    			<form action="{% url 'todo_add' %}" class="text-center">
+                    <button type="submit" class="btn btn-primary ">create Todo</button>
+                </form>
   		</div>
-               	<p class="text-center">
-               		<a href="todo_impr"><br><br>Impressum</a>
+				<p class="text-center">
+				<a href="{% url 'todo_impr' %}"><br><br>Impressum</a>
                	</p>    
-              </div>            
-	</body>
-</html>
+		</div>
+{% endblock %}
